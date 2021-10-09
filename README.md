@@ -1,4 +1,4 @@
-# Planner app
+# Src
 
 ## Project setup
 
