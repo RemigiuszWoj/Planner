@@ -1,18 +1,68 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+    <div>
+        <b-navbar>
+            <template #brand>
+                <b-navbar-item tag="router-link" :to="{ path: '/' }">
+                    <img
+                        src="https://raw.githubusercontent.com/buefy/buefy/dev/static/img/buefy-logo.png"
+                        alt="Lightweight UI components for Vue.js based on Bulma"
+                    />
+                </b-navbar-item>
+            </template>
+            <template #start>
+                <b-navbar-item href="#"> Home </b-navbar-item>
+                <b-navbar-item href="#"> Documentation </b-navbar-item>
+                <b-navbar-dropdown label="Info">
+                    <b-navbar-item href="#"> About </b-navbar-item>
+                    <b-navbar-item href="#"> Contact </b-navbar-item>
+                </b-navbar-dropdown>
+            </template>
+
+            <template #end>
+                <b-navbar-item tag="div">
+                    <div class="buttons">
+                        <a class="button is-primary">
+                            <strong>Sign up</strong>
+                        </a>
+                        <a class="button is-light"> Log in </a>
+                    </div>
+                </b-navbar-item>
+            </template>
+        </b-navbar>
+        <div class="buttons">
+            <b-button @click="getUser">Get users</b-button>
+        </div>
+    </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
+import userService from "@/services/userService";
+// import { mapState } from "vuex";
 export default {
-  name: "Home",
-  components: {
-    HelloWorld,
-  },
+    methods: {
+        getUser() {
+            console.log("Siema");
+            userService
+                .getUser()
+                .then(() => {
+                    this.$buefy.notification.open({
+                        duration: 3000,
+                        message: `Zajebiscie.`,
+                        type: "is-success",
+                        hasIcon: true,
+                    });
+                })
+                .catch(() => {
+                    this.$buefy.notification.open({
+                        duration: 3000,
+                        message: "Chujowo",
+                        type: "is-danger",
+                        hasIcon: true,
+                    });
+                });
+        },
+    },
 };
 </script>
+
+<style></style>
