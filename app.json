@@ -1,0 +1,12 @@
+{
+    "name": "Planner",
+    "description": "",
+    "repository": "https://gitlab.com/leghart/planner",
+    "keywords": ["django", "vue", "vuejs", "electron", "django rest framework"],
+    "env": {
+      "DJANGO_SETTINGS_MODULE": {
+        "description": "Set Django Settings to Production",
+        "value": "backend.settings"
+      }
+    }
+  }

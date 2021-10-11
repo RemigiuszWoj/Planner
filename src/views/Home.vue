@@ -29,9 +29,12 @@
                 </b-navbar-item>
             </template>
         </b-navbar>
-        <div class="buttons">
+        <div class="my-button">
             <b-button @click="getUser">Get users</b-button>
         </div>
+        <b-field class="my-input">
+            <b-numberinput v-model="id"></b-numberinput>
+        </b-field>
     </div>
 </template>
 
@@ -39,25 +42,31 @@
 import userService from "@/services/userService";
 // import { mapState } from "vuex";
 export default {
+    data() {
+        return {
+            id: 0,
+        };
+    },
     methods: {
         getUser() {
-            console.log("Siema");
             userService
-                .getUser()
-                .then(() => {
+                .getUser(this.id)
+                .then((data) => {
                     this.$buefy.notification.open({
-                        duration: 3000,
-                        message: `Zajebiscie.`,
+                        duration: 2000,
+                        message: `Get data from endpoint: ${this.id}.`,
                         type: "is-success",
                         hasIcon: true,
+                        icon: "globe",
                     });
+                    console.log("DATA: ", data);
                 })
                 .catch(() => {
                     this.$buefy.notification.open({
                         duration: 3000,
-                        message: "Chujowo",
+                        message: "Not found record in database",
                         type: "is-danger",
-                        hasIcon: true,
+                        // hasIcon: true,
                     });
                 });
         },
@@ -65,4 +74,15 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.my-button {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0.5rem;
+}
+.my-input {
+    max-width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+}
+</style>

@@ -1,3 +1,8 @@
 from django.db import models
 
-# Create your models here.
+
+class User(models.Model):
+    first_name = models.CharField(max_length=20, blank=True, null=True)
+    last_name = models.CharField(max_length=20, null=True, blank=True)
+    email = models.CharField(max_length=50, null=True, blank=True)
+    phone_number = models.CharField(max_length=9)
