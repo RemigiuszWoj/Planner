@@ -56,8 +56,6 @@ export default {
                         duration: 2000,
                         message: `Get data from endpoint: ${this.id}.`,
                         type: "is-success",
-                        hasIcon: true,
-                        icon: "globe",
                     });
                     console.log("DATA: ", data);
                 })
@@ -66,7 +64,6 @@ export default {
                         duration: 3000,
                         message: "Not found record in database",
                         type: "is-danger",
-                        // hasIcon: true,
                     });
                 });
         },
