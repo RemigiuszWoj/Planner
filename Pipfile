@@ -9,6 +9,8 @@ djangorestframework = "*"
 dj-database-url = "*"
 django-cors-headers = "*"
 pytz = "*"
+networkx = "*"
+matplotlib = "*"
 
 [dev-packages]
 black = "*"
