@@ -31,21 +31,38 @@
         </b-navbar>
         <div class="my-button">
             <b-button @click="getUser">Get users</b-button>
+            <b-button @click="createUser">Create user</b-button>
         </div>
         <b-field class="my-input">
             <b-numberinput v-model="id"></b-numberinput>
         </b-field>
+        <b-button @click="newUser = true">Open Modal</b-button>
+        <b-modal
+            v-model="newUser"
+            has-modal-card
+            trap-focus
+            :destroy-on-hide="false"
+            aria-role="dialog"
+            aria-label="Upload Modal"
+            :can-cancel="['escape', 'outside']"
+        >
+            <User />
+        </b-modal>
     </div>
 </template>
 
 <script>
 import userService from "@/services/userService";
-// import { mapState } from "vuex";
+import User from "@/components/User.vue";
 export default {
     data() {
         return {
+            newUser: false,
             id: 0,
         };
+    },
+    components: {
+        User,
     },
     methods: {
         getUser() {
@@ -63,6 +80,24 @@ export default {
                     this.$buefy.notification.open({
                         duration: 3000,
                         message: "Not found record in database",
+                        type: "is-danger",
+                    });
+                });
+        },
+        createUser() {
+            userService
+                .createUser()
+                .then(() => {
+                    this.$buefy.notification.open({
+                        duration: 2000,
+                        message: "User was created!",
+                        type: "is-success",
+                    });
+                })
+                .catch((err) => {
+                    this.$buefy.notification.open({
+                        duration: 3000,
+                        message: err.data,
                         type: "is-danger",
                     });
                 });
