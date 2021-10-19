@@ -2,13 +2,13 @@ import json
 import os
 import random
 
-# from backend.settings import MAX
+MAX = 30
 
 if not os.path.isfile("fixture.json"):
+    records = []
     with open("fixture.json", "w", encoding="utf-8") as fp:
-        fp.write("[\n")
         id = 0
-        for _ in range(1):
+        for _ in range(MAX):
             id += 1
             name = random.choice(open(r"backend/operations/data/names", "r", encoding="utf-8").read().splitlines())
             surname = random.choice(
@@ -22,26 +22,8 @@ if not os.path.isfile("fixture.json"):
                 "last_name": surname,
                 "email": email,
                 "phone_number": phone,
-                "position": position,
+                "position_x": position[0],
+                "position_y": position[1],
             }
-            # command = f"""{
-            #     "model": user.User,
-            #     "pk": {id},
-            #     "fields": {
-            #         "first_name": {id},
-            #         "last_name": {},
-            #         "email": {},
-            #         "phone_number": {},
-            #         "position": {},
-            #     }
-            # },
-            # """
-
-            # json_file = json.dumps(command)
-            # fp.write(json_file)
-            # print(json.dumps(fields, ensure_ascii=False).encode("utf8"))
-            # fp.write(
-            #     ' {\n  "model": "user.User",\n  "pk": {},\n  "fields": {\n   "first_name": {},\n   "last_name": {}},\n   "email": {},\n   "phone_number": {},\n   "position": {}\n  }\n '.format(
-            #         id, name, surname, email, phone, position
-            #     )
-            # )
+            records.append({"model": "user.User", "pk": id, "fields": fields})
+        fp.write(json.dumps(records, indent=4, sort_keys=True))
