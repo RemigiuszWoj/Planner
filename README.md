@@ -24,6 +24,16 @@ yarn build
 yarn lint
 ```
 
-### Customize configuration
+### Create dataset as fixture
 
-See [Configuration Reference](https://cli.vuejs.org/config/).
+```
+python backend/operations/generate_users.py
+```
+
+### Load data into database
+
+In virtualenv, run:
+
+```
+python manage.py loaddata fixture.json
+```
