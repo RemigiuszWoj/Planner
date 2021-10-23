@@ -1,14 +1,30 @@
 <template>
     <section>
         <div class="column is-half">
-            <b-field grouped group-multiline>
-                <b-button
-                    label="Clear checked"
-                    type="is-danger"
-                    icon-left="close"
-                    class="field"
-                    @click="checkedRows = []"
-                />
+            <b-field>
+                <div class="flex-row-btns">
+                    <b-button
+                        label="Clear checked"
+                        type="is-danger"
+                        class="clear-btn"
+                        @click="checkedRows = []"
+                        rounded="true"
+                        outlined="true"
+                    />
+                    <b-button
+                        label="Main menu"
+                        type="is-success"
+                        class="main-menu-btn"
+                        rounded="true"
+                        @click="redirect_to_mainmenu()"
+                    />
+                    <b-button
+                        label="Submit"
+                        type="is-primary"
+                        class="submit-btn"
+                        rounded="true"
+                    />
+                </div>
 
                 <!-- Comment 
             <b-select v-model="checkboxPosition">
@@ -25,7 +41,6 @@
                         :columns="columns"
                         :checked-rows.sync="checkedRows"
                         checkable
-                        :checkbox-position="checkboxPosition"
                     >
                         <!-- 
                     <template #bottom-left>
@@ -34,11 +49,10 @@
                     -->
                     </b-table>
                 </b-tab-item>
-                <!--
-                <b-tab-item label="Checked rows">
+
+                <!-- <b-tab-item label="Checked rows">
                     <pre>{{ checkedRows }}</pre>
-                </b-tab-item>
-                -->
+                </b-tab-item> -->
             </b-tabs>
         </div>
     </section>
@@ -52,6 +66,7 @@ export default {
     data() {
         return {
             data: [],
+            checkedRows: [],
             checkboxPosition: "left",
             //checkedRows: [data[1], data[3]],
             columns: [
@@ -63,12 +78,12 @@ export default {
                 },
                 {
                     field: "first_name",
-                    label: "First Name",
+                    label: "First name",
                     centered: true,
                 },
                 {
                     field: "last_name",
-                    label: "Last Name",
+                    label: "Last name",
                     centered: true,
                 },
                 {
@@ -78,7 +93,7 @@ export default {
                 },
                 {
                     field: "phone_number",
-                    label: "Phone_Number",
+                    label: "Phone number",
                     centered: true,
                 },
             ],
@@ -90,9 +105,47 @@ export default {
     },
     methods: {
         ...mapActions("user", ["fetchUsers"]),
+        redirect_to_mainmenu() {
+            this.$router.push("/");
+        },
     },
     computed: {
         ...mapState("user", ["users"]),
     },
 };
 </script>
+
+<style scoped>
+.flex-row-btns {
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 0 10px 5px;
+}
+
+.clear-btn {
+    box-shadow: 0 0 30px 1px rgb(1 1 1 / 30%);
+    transition: all 0.6s ease-in-out;
+}
+
+.clear-btn:hover {
+    font-size: 17px;
+}
+
+.main-menu-btn {
+    box-shadow: 0 0 30px 1px rgb(1 1 1 / 30%);
+    transition: all 0.6s ease-in-out;
+}
+
+.submit-btn {
+    box-shadow: 0 0 30px 1px rgb(1 1 1 / 30%);
+    transition: all 0.6s ease-in-out;
+}
+
+.submit-btn:hover {
+    font-size: 17px;
+}
+
+.main-menu-btn:hover {
+    font-size: 17px;
+}
+</style>
