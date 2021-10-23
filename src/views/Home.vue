@@ -48,12 +48,14 @@
         >
             <User />
         </b-modal>
+        <b-button @click="fetchAll">Fetch all users</b-button>
     </div>
 </template>
 
 <script>
 import userService from "@/services/userService";
 import User from "@/components/User.vue";
+import { mapState } from "vuex";
 export default {
     data() {
         return {
@@ -102,7 +104,16 @@ export default {
                     });
                 });
         },
+        fetchAll() {
+            console.log(this.users);
+        },
     },
+    computed: {
+        ...mapState("user", ["users"]),
+    },
+    created() {
+        this.$store.dispatch("user/fetchUsers");
+    }
 };
 </script>
 

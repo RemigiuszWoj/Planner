@@ -7,4 +7,7 @@ export default {
     createUser(data) {
         return api.post("user/", data);
     },
+    fetchUsers() {
+        return api.get("user/").then((response) => response.data);
+    }
 };
