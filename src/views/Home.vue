@@ -64,7 +64,7 @@ export default {
     },
     created() {
         this.$store.dispatch("user/fetchUsers");
-    }
+    },
 };
 </script>
 
