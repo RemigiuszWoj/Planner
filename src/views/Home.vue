@@ -33,20 +33,18 @@
         >
             <User />
         </b-modal>
-        <b-button type="is-info" size="is-large" @click="createPlan = true"
+        <b-button type="is-info" size="is-large" @click="createPlan"
             >Create plan</b-button
         >
     </div>
 </template>
 
 <script>
-import userService from "@/services/userService";
 import User from "@/components/User.vue";
 export default {
     data() {
         return {
             newUser: false,
-            id: 0,
         };
     },
     components: {
@@ -54,22 +52,7 @@ export default {
     },
     methods: {
         createPlan() {
-            userService
-                .createPlan()
-                .then(() => {
-                    this.$buefy.notification.open({
-                        duration: 2000,
-                        message: "Plan was created!",
-                        type: "is-success",
-                    });
-                })
-                .catch((err) => {
-                    this.$buefy.notification.open({
-                        duration: 3000,
-                        message: err.data,
-                        type: "is-danger",
-                    });
-                });
+            this.$router.push("/plans");
         },
     },
 };
