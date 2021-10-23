@@ -8,6 +8,8 @@ django = "*"
 djangorestframework = "*"
 dj-database-url = "*"
 django-cors-headers = "*"
+pytz = "*"
+tzdata = "*"
 
 [dev-packages]
 black = "*"
