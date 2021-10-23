@@ -17,69 +17,45 @@
                     <b-navbar-item href="#"> Contact </b-navbar-item>
                 </b-navbar-dropdown>
             </template>
-
-            <template #end>
-                <b-navbar-item tag="div">
-                    <div class="buttons">
-                        <a class="button is-primary">
-                            <strong>Sign up</strong>
-                        </a>
-                        <a class="button is-light"> Log in </a>
-                    </div>
-                </b-navbar-item>
-            </template>
         </b-navbar>
-        <div class="my-button">
-            <b-button @click="getUser">Get users</b-button>
-        </div>
-        <b-field class="my-input">
-            <b-numberinput v-model="id"></b-numberinput>
-        </b-field>
+
+        <b-button type="is-success" size="is-large" @click="newUser = true"
+            >Add user</b-button
+        >
+        <b-modal
+            v-model="newUser"
+            has-modal-card
+            trap-focus
+            :destroy-on-hide="false"
+            aria-role="dialog"
+            aria-label="Upload Modal"
+            :can-cancel="['escape', 'outside']"
+        >
+            <User />
+        </b-modal>
+        <b-button type="is-info" size="is-large" @click="createPlan"
+            >Create plan</b-button
+        >
     </div>
 </template>
 
 <script>
-import userService from "@/services/userService";
-// import { mapState } from "vuex";
+import User from "@/components/User.vue";
 export default {
     data() {
         return {
-            id: 0,
+            newUser: false,
         };
     },
+    components: {
+        User,
+    },
     methods: {
-        getUser() {
-            userService
-                .getUser(this.id)
-                .then((data) => {
-                    this.$buefy.notification.open({
-                        duration: 2000,
-                        message: `Get data from endpoint: ${this.id}.`,
-                        type: "is-success",
-                    });
-                    console.log("DATA: ", data);
-                })
-                .catch(() => {
-                    this.$buefy.notification.open({
-                        duration: 3000,
-                        message: "Not found record in database",
-                        type: "is-danger",
-                    });
-                });
+        createPlan() {
+            this.$router.push("/plans");
         },
     },
 };
 </script>
 
-<style>
-.my-button {
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 0.5rem;
-}
-.my-input {
-    max-width: 20%;
-    margin-left: auto;
-    margin-right: auto;
-}
-</style>
+<style></style>
