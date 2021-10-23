@@ -41,6 +41,7 @@
 
 <script>
 import User from "@/components/User.vue";
+import { mapState } from "vuex";
 export default {
     data() {
         return {
@@ -54,7 +55,16 @@ export default {
         createPlan() {
             this.$router.push("/plans");
         },
+        fetchAll() {
+            console.log(this.users);
+        },
     },
+    computed: {
+        ...mapState("user", ["users"]),
+    },
+    created() {
+        this.$store.dispatch("user/fetchUsers");
+    }
 };
 </script>
 

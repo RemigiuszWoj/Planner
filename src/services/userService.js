@@ -13,4 +13,7 @@ export default {
         return api.get("user/").then((response) => response.data);
 
     },
+    fetchUsers() {
+        return api.get("user/").then((response) => response.data);
+    }
 };
