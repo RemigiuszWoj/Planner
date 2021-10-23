@@ -4,7 +4,7 @@
             <div class="modal-card" style="width: auto">
                 <header class="modal-card-head">
                     <p class="modal-card-title">Add User</p>
-                    <button type="button" class="delete" @click="$emit('close')" />
+                    <button type="button" class="delete" @click="$parent.close()" />
                 </header>
                 <section class="modal-card-body">
                     <b-field label="Name">
