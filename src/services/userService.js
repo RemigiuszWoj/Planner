@@ -5,6 +5,6 @@ export default {
         return api.get(`user/${id}`).then((response) => response.data);
     },
     createUser(data) {
-        return api.post("user/", data);
+        return api.post("user/", data).then((response) => response.data);
     },
 };
