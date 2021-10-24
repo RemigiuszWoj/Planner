@@ -124,6 +124,7 @@ export default {
     transform: translate(-50%, -50%);
     box-shadow: 0 0 30px 1px rgb(1 1 1 / 30%);
     transition: all 0.4s ease-in-out;
+    display: none;
 }
 
 .random-database-btn:hover {
