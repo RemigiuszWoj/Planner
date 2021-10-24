@@ -2,7 +2,7 @@ import json
 import os
 import random
 
-MAX = 30
+MAX = 10
 
 if not os.path.isfile("fixture.json"):
     records = []
