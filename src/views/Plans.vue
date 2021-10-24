@@ -1,6 +1,6 @@
 <template>
     <section>
-        <div class="column is-half">
+        <div class="column is-full">
             <b-field>
                 <div class="flex-row-btns">
                     <b-button
@@ -8,21 +8,21 @@
                         type="is-danger"
                         class="clear-btn"
                         @click="checkedRows = []"
-                        rounded="true"
-                        outlined="true"
+                        rounded
+                        outlined
                     />
                     <b-button
                         label="Main menu"
                         type="is-success"
                         class="main-menu-btn"
-                        rounded="true"
+                        rounded
                         @click="redirect_to_mainmenu()"
                     />
                     <b-button
                         label="Submit"
                         type="is-primary"
                         class="submit-btn"
-                        rounded="true"
+                        rounded
                     />
                 </div>
 
