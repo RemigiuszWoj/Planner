@@ -37,10 +37,12 @@ def graph(data: list) -> None:
     # create edges between nodes, as a tuple of references to each node
     G.add_edges_from(combinations([i["id"] for i in data], 2))
 
+    w = nx.johnson(G, weight="weight")
+    print(w)
     nx.draw(G, nx.get_node_attributes(G, "pos"), with_labels=True)
     plt.show()
 
-    print("All distances: ", get_nodes_paths(data))
+    # print("All distances: ", get_nodes_paths(data))
 
 
 people = [
@@ -89,33 +91,34 @@ people = [
         "position_x": 9,
         "position_y": 2,
     },
-    {
-        "id": 6,
-        "first_name": "Mateusz",
-        "last_name": "Wojcik",
-        "email": "mateusz.wojcik.wp.pl",
-        "phone_number": "761661329",
-        "position_x": -6,
-        "position_y": 0,
-    },
-    {
-        "id": 7,
-        "first_name": "Tomasz",
-        "last_name": "Wojcik",
-        "email": "tomasz.wojcik.wp.pl",
-        "phone_number": "780751665",
-        "position_x": 8,
-        "position_y": 10,
-    },
-    {
-        "id": 8,
-        "first_name": "Kamil",
-        "last_name": "Galazka",
-        "email": "kamil.galazka.gmail.com",
-        "phone_number": "291747091",
-        "position_x": -12,
-        "position_y": -2,
-    },
+    # },
+    # {
+    #     "id": 6,
+    #     "first_name": "Mateusz",
+    #     "last_name": "Wojcik",
+    #     "email": "mateusz.wojcik.wp.pl",
+    #     "phone_number": "761661329",
+    #     "position_x": -6,
+    #     "position_y": 0,
+    # },
+    # {
+    #     "id": 7,
+    #     "first_name": "Tomasz",
+    #     "last_name": "Wojcik",
+    #     "email": "tomasz.wojcik.wp.pl",
+    #     "phone_number": "780751665",
+    #     "position_x": 8,
+    #     "position_y": 10,
+    # },
+    # {
+    #     "id": 8,
+    #     "first_name": "Kamil",
+    #     "last_name": "Galazka",
+    #     "email": "kamil.galazka.gmail.com",
+    #     "phone_number": "291747091",
+    #     "position_x": -12,
+    #     "position_y": -2,
+    # },
 ]
 
 graph(people)
