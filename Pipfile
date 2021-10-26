@@ -12,6 +12,7 @@ pytz = "*"
 networkx = "*"
 matplotlib = "*"
 psycopg2 = "*"
+tzdata = "*"
 
 [dev-packages]
 black = "*"

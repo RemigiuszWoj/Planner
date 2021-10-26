@@ -1,7 +1,11 @@
-<template>
+<template #default="props">
     <section>
         <form method="post">
             <div class="modal-card" style="width: auto">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Add User</p>
+                    <button type="button" class="delete" @click="$parent.close()" />
+                </header>
                 <section class="modal-card-body">
                     <b-field label="Name">
                         <b-input
@@ -42,6 +46,24 @@
                         >
                         </b-input>
                     </b-field>
+
+                    <b-field label="Position">
+                        <b-input
+                            type="text"
+                            v-model="xPosition"
+                            placeholder="X-Position"
+                            required
+                        >
+                        </b-input>
+
+                        <b-input
+                            type="text"
+                            v-model="yPosition"
+                            placeholder="Y-Position"
+                            required
+                        >
+                        </b-input>
+                    </b-field>
                 </section>
                 <footer class="modal-card-foot">
                     <b-button
@@ -65,6 +87,8 @@ export default {
             lastName: "",
             email: "",
             phoneNumber: "",
+            xPosition: "",
+            yPosition: "",
         };
     },
     methods: {
@@ -74,7 +98,9 @@ export default {
                 last_name: this.lastName,
                 email: this.email,
                 phone_number: this.phoneNumber,
-            }
+                xPosition: this.xPosition,
+                yPosition: this.yPosition,
+            };
             userService
                 .createUser(data)
                 .then(() => {
