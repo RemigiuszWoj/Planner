@@ -25,13 +25,6 @@
                         rounded
                     />
                 </div>
-
-                <!-- Comment 
-            <b-select v-model="checkboxPosition">
-                <option value="left">Checkbox at left</option>
-                <option value="right">Checkbox at right</option>
-            </b-select>
-            -->
             </b-field>
 
             <b-tabs>
@@ -60,7 +53,6 @@
 
 <script>
 import api from "@/services/api";
-//import userService from "@/services/userService";
 import { mapActions, mapState } from "vuex";
 export default {
     data() {
@@ -68,7 +60,6 @@ export default {
             data: [],
             checkedRows: [],
             checkboxPosition: "left",
-            //checkedRows: [data[1], data[3]],
             columns: [
                 {
                     field: "id",
@@ -101,7 +92,6 @@ export default {
     },
     mounted() {
         api.get("user/").then((response) => (this.data = response.data));
-        //this.data = this.users;
     },
     methods: {
         ...mapActions("user", ["fetchUsers"]),

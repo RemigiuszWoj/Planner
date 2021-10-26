@@ -60,9 +60,6 @@ export default {
         createPlan() {
             this.$router.push("/plans");
         },
-        fetchAll() {
-            console.log(this.users);
-        },
     },
     computed: {
         ...mapState("user", ["users"]),
