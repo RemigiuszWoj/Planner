@@ -12,4 +12,12 @@ export default {
     fetchUsers() {
         return api.get("user/").then((response) => response.data);
     },
+
+    calcUsers(users) {
+        let data = {
+            users,
+            flaga: true,
+        };
+        return api.post("user/", data).then((response) => response.data);
+    }
 };

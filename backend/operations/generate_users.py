@@ -17,13 +17,15 @@ if not os.path.isfile("fixture.json"):
             email = "{}.{}.{}".format(name.lower(), surname.lower(), random.choice(["gmail.com", "wp.pl", "onet.pl"]))
             phone = "".join([str(random.randint(0, 9)) for i in range(9)])
             position = (random.randint(-20, 20), random.randint(-20, 20))
+            # visit_time = random.randrange(10, 60, 5)
             fields = {
                 "first_name": name,
                 "last_name": surname,
                 "email": email,
                 "phone_number": phone,
-                "position_x": position[0],
-                "position_y": position[1],
+                "x": position[0],
+                "y": position[1],
+                # "visit_time": visit_time,
             }
             records.append({"model": "user.User", "pk": id, "fields": fields})
         fp.write(json.dumps(records, indent=4, sort_keys=True))
