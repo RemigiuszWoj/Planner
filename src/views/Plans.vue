@@ -23,6 +23,7 @@
                         type="is-primary"
                         class="submit-btn"
                         rounded
+                        @click="submit()"
                     />
                 </div>
             </b-field>
@@ -53,6 +54,7 @@
 
 <script>
 import api from "@/services/api";
+import userService from "@/services/userService.js";
 import { mapActions, mapState } from "vuex";
 export default {
     data() {
@@ -60,6 +62,7 @@ export default {
             data: [],
             checkedRows: [],
             checkboxPosition: "left",
+            returnedUsers: [],
             columns: [
                 {
                     field: "id",
@@ -97,6 +100,11 @@ export default {
         ...mapActions("user", ["fetchUsers"]),
         redirect_to_mainmenu() {
             this.$router.push("/");
+        },
+        submit() {
+            userService.calcUsers(this.checkedRows).then((response) => {
+                this.returnedUsers = response.data;
+            });
         },
     },
     computed: {

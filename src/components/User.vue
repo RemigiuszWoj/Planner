@@ -98,8 +98,8 @@ export default {
                 last_name: this.lastName,
                 email: this.email,
                 phone_number: this.phoneNumber,
-                xPosition: this.xPosition,
-                yPosition: this.yPosition,
+                x: this.xPosition,
+                y: this.yPosition,
             };
             userService
                 .createUser(data)
