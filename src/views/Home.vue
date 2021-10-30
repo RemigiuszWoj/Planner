@@ -1,5 +1,6 @@
 <template>
     <div class="main-content">
+        <div class="title">Home Page</div>
         <div class="buttons">
             <div class="btn-container-1">
                 <b-button type="is-success" @click="newUser = true" class="newuser-btn"
@@ -71,6 +72,12 @@ export default {
 </script>
 
 <style scoped>
+.title {
+    position: relative;
+    font-size: 75px;
+    margin-top: 10%;
+    color: rgba(89, 149, 151, 0.815);
+}
 .create-btn {
     box-shadow: 0 0 30px 1px rgb(1 1 1 / 30%);
     transition: all 0.6s ease-in-out;
