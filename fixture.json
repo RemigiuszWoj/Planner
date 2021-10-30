@@ -1,6 +1,7 @@
 [
     {
         "fields": {
+<<<<<<< HEAD
             "email": "pawel.kaczmarek.wp.pl",
             "first_name": "Pawel",
             "last_name": "Kaczmarek",
@@ -8,12 +9,21 @@
             "visit_time": 25,
             "x": -19,
             "y": -17
+=======
+            "email": "damian.wisnia.wp.pl",
+            "first_name": "Damian",
+            "last_name": "Wisnia",
+            "phone_number": "250134191",
+            "x": 9,
+            "y": -10
+>>>>>>> 690847540f4b27d1b4c65f1fe19fefa2d9f84e89
         },
         "model": "user.User",
         "pk": 1
     },
     {
         "fields": {
+<<<<<<< HEAD
             "email": "anna.kwiatek.onet.pl",
             "first_name": "Anna",
             "last_name": "Kwiatek",
@@ -21,12 +31,21 @@
             "visit_time": 20,
             "x": 15,
             "y": -18
+=======
+            "email": "dariusz.kaczmarek.wp.pl",
+            "first_name": "Dariusz",
+            "last_name": "Kaczmarek",
+            "phone_number": "961350287",
+            "x": -7,
+            "y": 12
+>>>>>>> 690847540f4b27d1b4c65f1fe19fefa2d9f84e89
         },
         "model": "user.User",
         "pk": 2
     },
     {
         "fields": {
+<<<<<<< HEAD
             "email": "hubert.wojcieszak.wp.pl",
             "first_name": "Hubert",
             "last_name": "Wojcieszak",
@@ -34,12 +53,21 @@
             "visit_time": 30,
             "x": -6,
             "y": 10
+=======
+            "email": "dariusz.wojcieszak.onet.pl",
+            "first_name": "Dariusz",
+            "last_name": "Wojcieszak",
+            "phone_number": "749204429",
+            "x": 14,
+            "y": 19
+>>>>>>> 690847540f4b27d1b4c65f1fe19fefa2d9f84e89
         },
         "model": "user.User",
         "pk": 3
     },
     {
         "fields": {
+<<<<<<< HEAD
             "email": "wieslaw.kwiatek.gmail.com",
             "first_name": "Wieslaw",
             "last_name": "Kwiatek",
@@ -47,12 +75,21 @@
             "visit_time": 45,
             "x": 16,
             "y": -16
+=======
+            "email": "dariusz.wisnia.wp.pl",
+            "first_name": "Dariusz",
+            "last_name": "Wisnia",
+            "phone_number": "917472970",
+            "x": -5,
+            "y": 1
+>>>>>>> 690847540f4b27d1b4c65f1fe19fefa2d9f84e89
         },
         "model": "user.User",
         "pk": 4
     },
     {
         "fields": {
+<<<<<<< HEAD
             "email": "joanna.kaczmarek.gmail.com",
             "first_name": "Joanna",
             "last_name": "Kaczmarek",
@@ -60,12 +97,21 @@
             "visit_time": 40,
             "x": -4,
             "y": -4
+=======
+            "email": "rafal.michalczyk.wp.pl",
+            "first_name": "Rafal",
+            "last_name": "Michalczyk",
+            "phone_number": "746530282",
+            "x": -20,
+            "y": 16
+>>>>>>> 690847540f4b27d1b4c65f1fe19fefa2d9f84e89
         },
         "model": "user.User",
         "pk": 5
     },
     {
         "fields": {
+<<<<<<< HEAD
             "email": "anna.michalczyk.onet.pl",
             "first_name": "Anna",
             "last_name": "Michalczyk",
@@ -73,12 +119,21 @@
             "visit_time": 25,
             "x": -13,
             "y": 1
+=======
+            "email": "piotr.grabik.wp.pl",
+            "first_name": "Piotr",
+            "last_name": "Grabik",
+            "phone_number": "636380098",
+            "x": 18,
+            "y": 12
+>>>>>>> 690847540f4b27d1b4c65f1fe19fefa2d9f84e89
         },
         "model": "user.User",
         "pk": 6
     },
     {
         "fields": {
+<<<<<<< HEAD
             "email": "magdalena.palec.wp.pl",
             "first_name": "Magdalena",
             "last_name": "Palec",
@@ -86,12 +141,21 @@
             "visit_time": 50,
             "x": 9,
             "y": -7
+=======
+            "email": "julia.kowalczyk.wp.pl",
+            "first_name": "Julia",
+            "last_name": "Kowalczyk",
+            "phone_number": "123200818",
+            "x": -15,
+            "y": -2
+>>>>>>> 690847540f4b27d1b4c65f1fe19fefa2d9f84e89
         },
         "model": "user.User",
         "pk": 7
     },
     {
         "fields": {
+<<<<<<< HEAD
             "email": "piotr.kwiatek.onet.pl",
             "first_name": "Piotr",
             "last_name": "Kwiatek",
@@ -99,12 +163,21 @@
             "visit_time": 55,
             "x": 6,
             "y": -20
+=======
+            "email": "bartosz.socha.gmail.com",
+            "first_name": "Bartosz",
+            "last_name": "Socha",
+            "phone_number": "510252620",
+            "x": -7,
+            "y": 15
+>>>>>>> 690847540f4b27d1b4c65f1fe19fefa2d9f84e89
         },
         "model": "user.User",
         "pk": 8
     },
     {
         "fields": {
+<<<<<<< HEAD
             "email": "aleksandra.nowiczok.wp.pl",
             "first_name": "Aleksandra",
             "last_name": "Nowiczok",
@@ -112,12 +185,21 @@
             "visit_time": 40,
             "x": -11,
             "y": 15
+=======
+            "email": "celina.koziol.gmail.com",
+            "first_name": "Celina",
+            "last_name": "Koziol",
+            "phone_number": "117595440",
+            "x": 6,
+            "y": 18
+>>>>>>> 690847540f4b27d1b4c65f1fe19fefa2d9f84e89
         },
         "model": "user.User",
         "pk": 9
     },
     {
         "fields": {
+<<<<<<< HEAD
             "email": "bogdan.wojcieszak.wp.pl",
             "first_name": "Bogdan",
             "last_name": "Wojcieszak",
@@ -125,6 +207,14 @@
             "visit_time": 45,
             "x": -5,
             "y": 17
+=======
+            "email": "hubert.nowiczok.gmail.com",
+            "first_name": "Hubert",
+            "last_name": "Nowiczok",
+            "phone_number": "104272277",
+            "x": 2,
+            "y": 0
+>>>>>>> 690847540f4b27d1b4c65f1fe19fefa2d9f84e89
         },
         "model": "user.User",
         "pk": 10

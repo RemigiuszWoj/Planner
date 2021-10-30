@@ -3,7 +3,6 @@ import random
 
 MAX = 10
 
-
 records = []
 with open("fixture.json", "w", encoding="utf-8") as fp:
     id = 0
