@@ -38,10 +38,15 @@
                     </b-field>
 
                     <b-field label="Email">
+                        <b-input type="email" v-model="email" placeholder="Your email">
+                        </b-input>
+                    </b-field>
+
+                    <b-field label="Visit time">
                         <b-input
-                            type="email"
-                            v-model="email"
-                            placeholder="Your email"
+                            v-model="visit_time"
+                            type="text"
+                            placeholder="Estimated visit time"
                             required
                         >
                         </b-input>
@@ -89,6 +94,7 @@ export default {
             phoneNumber: "",
             xPosition: "",
             yPosition: "",
+            visit_time: "",
         };
     },
     methods: {
@@ -100,6 +106,7 @@ export default {
                 phone_number: this.phoneNumber,
                 x: this.xPosition,
                 y: this.yPosition,
+                visit_time: this.visit_time,
             };
             userService
                 .createUser(data)
@@ -116,6 +123,10 @@ export default {
                         message: err.data,
                         type: "is-danger",
                     });
+                })
+                .finally(() => {
+                    this.$parent.close();
+                    Object.assign(this.$data, this.$options.data());
                 });
         },
     },

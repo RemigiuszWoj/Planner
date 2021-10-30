@@ -19,5 +19,5 @@ export default {
             flag: true,
         };
         return api.post("user/", data).then((response) => response.data);
-    }
+    },
 };
