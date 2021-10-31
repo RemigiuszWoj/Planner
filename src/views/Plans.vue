@@ -51,7 +51,7 @@
                 <b-tabs>
                     <b-tab-item label="Visits table">
                         <b-table
-                            :data="data"
+                            :data="dataa"
                             :columns="columns"
                             :checked-rows.sync="checkedRows"
                             checkable
@@ -118,6 +118,7 @@ export default {
             ],
         };
     },
+    
     mounted() {
         api.get("user/").then((response) => (this.data = response.data));
     },

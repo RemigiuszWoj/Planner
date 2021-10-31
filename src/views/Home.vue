@@ -1,6 +1,6 @@
 <template>
     <div class="main-content">
-        <div class="title">Home Page</div>
+        <div class="title">Just make your route</div>
         <div class="buttons">
             <div class="btn-container-1">
                 <b-button type="is-success" @click="newUser = true" class="newuser-btn"
