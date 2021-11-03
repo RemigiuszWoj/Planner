@@ -1,65 +1,72 @@
 <template>
     <section>
-        <div class="column is-full">
-            <b-field>
-                <div class="flex-row-btns">
-                    <b-button
-                        label="Clear checked"
-                        type="is-danger"
-                        class="clear-btn"
-                        @click="checkedRows = []"
-                        rounded
-                        outlined
-                    />
-                    <b-button
-                        label="Main menu"
-                        type="is-success"
-                        class="main-menu-btn"
-                        rounded
-                        @click="redirect_to_mainmenu()"
-                    />
-                    <b-button
-                        label="Submit"
-                        type="is-primary"
-                        class="submit-btn"
-                        rounded
-                        @click="submit()"
-                    />
-                </div>
-            </b-field>
+        <b-field>
+            <div class="flex-row-btns">
+                <b-button
+                    label="Clear checked"
+                    type="is-danger"
+                    class="clear-btn"
+                    @click="checkedRows = []"
+                    rounded
+                    outlined
+                />
+                <b-button
+                    label="Main menu"
+                    type="is-success"
+                    class="main-menu-btn"
+                    rounded
+                    @click="redirect_to_mainmenu()"
+                />
+                <b-button
+                    label="Submit"
+                    type="is-primary"
+                    class="submit-btn"
+                    rounded
+                    @click="submit()"
+                />
+            </div>
+        </b-field>
+        <div class="column is-half" style="display: inline-block">
             <div class="table">
-                <b-tabs>
-                    <b-tab-item label="Patient table">
-                        <b-table
-                            :data="data"
-                            :columns="columns"
-                            :checked-rows.sync="checkedRows"
-                            checkable
-                        >
-                            <!-- 
+                <div class="all_table">
+                    <b-tabs>
+                        <b-tab-item label="patient_table">
+                            <b-table
+                                :data="data"
+                                :columns="columns"
+                                :checked-rows.sync="checkedRows"
+                                checkable
+                            >
+                                <!-- 
                     <template #bottom-left>
                         <b>Total checked</b>: {{ checkedRows.length }}
                     </template>
                     -->
-                        </b-table>
-                    </b-tab-item>
+                            </b-table>
+                        </b-tab-item>
 
-                    <!-- <b-tab-item label="Checked rows">
+                        <!-- <b-tab-item label="Checked rows">
                     <pre>{{ checkedRows }}</pre>
                 </b-tab-item> -->
-                </b-tabs>
-
-                <b-tabs>
-                    <b-tab-item label="Visits table">
-                        <b-table
-                            :data="dataa"
-                            :columns="columns"
-                            :checked-rows.sync="checkedRows"
-                            checkable
-                        >
-                        </b-table>
-                    </b-tab-item>
-                </b-tabs>
+                    </b-tabs>
+                </div>
+            </div>
+        </div>
+        <div class="column is-half" style="display: inline-block">
+            <div class="table">
+                <div class="doctor_table">
+                    <b-tabs>
+                        <b-tab-item label="Visits table">
+                            <b-table
+                                :data="data"
+                                :columns="columns"
+                                :checked-rows.sync="checkedRows"
+                                checkable
+                            >
+                            </b-table>
+                        </b-tab-item>
+                    </b-tabs>
+                </div>
             </div>
         </div>
     </section>
@@ -69,9 +76,11 @@
 import api from "@/services/api";
 import userService from "@/services/userService.js";
 import { mapActions, mapState } from "vuex";
+
 export default {
     data() {
         return {
+            // position: "(" + this.data.position_x + "," + this.data.position_y + ")",
             data: [],
             checkedRows: [],
             checkboxPosition: "left",
@@ -110,7 +119,7 @@ export default {
                 },
                 {
                     field: "position_x",
-                    label: "Position X",
+                    label: "Position",
                     centered: true,
                 },
                 {
@@ -121,7 +130,7 @@ export default {
             ],
         };
     },
-    
+
     mounted() {
         api.get("user/").then((response) => (this.data = response.data));
     },
@@ -131,6 +140,7 @@ export default {
             this.$router.push("/");
         },
         submit() {
+            // console.log(position);
             userService.calcUsers(this.checkedRows).then((response) => {
                 this.returnedUsers = response.data;
             });
@@ -176,7 +186,7 @@ export default {
     font-size: 17px;
 }
 
-.table {
-    justify-content: space-between;
+.flex-row-btns {
+    margin: 20px 10px 0px 10px;
 }
 </style>
