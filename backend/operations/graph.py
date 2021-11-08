@@ -1,5 +1,5 @@
 import math
-from itertools import combinations
+from itertools import combinations, permutations
 
 # import matplotlib.pyplot as plt
 # import networkx as nx
@@ -20,15 +20,59 @@ def drop_field(d: dict) -> dict:
     return {k: d[k] for k in d.keys() - ["first_name", "last_name", "email", "phone_number"]}
 
 
-def insert_start(idx: int, _list: list) -> list:
+def insert_start(idx: int, _list: list):
     _list.insert(idx, {"id": 0, "x": START_X, "y": START_Y, "visit_time": 0})
+
+
+def total_single_time(way: list, nodes: list) -> float:
+    total_time = 0
+
+    for i in range(len(way)):
+        if i == 0:
+            var = [node for node in nodes if way[0] == node["id"]]
+            total_time += (
+                get_distance({"id": 0, "x": START_X, "y": START_Y, "visit_time": 0}, var[0]) + var[0]["visit_time"]
+            )
+        else:
+            var1 = [node for node in nodes if way[i] == node["id"]]
+            var2 = [node for node in nodes if way[i - 1] == node["id"]]
+            total_time += get_distance(var1[0], var2[0]) + var1[0]["visit_time"]
+    return total_time
+
+
+def more_docs(doc1: list, nodes: list) -> list:
+    doc2 = []
+    total_time = []
+    while True:
+        t1 = total_single_time(doc1, nodes)
+        t2 = total_single_time(doc2, nodes)
+        greater = t1 if t1 >= t2 else t2
+        total_time.append((f"{doc1}-{doc2}", greater))
+        try:
+            doc2.append(doc1.pop())
+        except IndexError:
+            break
+    return total_time
 
 
 def main_logic(data: dict) -> None:
 
     # list representing users as nodes with pos_x, pos_y, id
     nodes = [drop_field(p) for p in data["users"]]
+    tab = []
+    for i in permutations([node["id"] for node in nodes]):
+        # tab.append((i, total_single_time(list(i), nodes)))
+        tab.append(more_docs(list(i), nodes))
+    # for i in tab:
+    #     print(i)
+    # print(min(tab, key=lambda x: x[0][1]))
+    # print(len(tab), flush=True)
+    n_tab = []
+    for i in tab:
+        n_tab.append(min(i, key=lambda x: x[1]))
+    print(min(n_tab, key=lambda x: x[1]))
 
+    # print(i, flush=True)
     #
     # tutaj bedzie podzial listy na podlisty
     #
