@@ -32,8 +32,8 @@
                     <b-tabs>
                         <b-tab-item label="patient_table">
                             <b-table
-                                :data="data"
-                                :columns="columns"
+                                :data="data1"
+                                :columns="columns1"
                                 :checked-rows.sync="checkedRows"
                                 checkable
                             >
@@ -57,13 +57,7 @@
                 <div class="doctor_table">
                     <b-tabs>
                         <b-tab-item label="Visits table">
-                            <b-table
-                                :data="data"
-                                :columns="columns"
-                                :checked-rows.sync="checkedRows"
-                                checkable
-                            >
-                            </b-table>
+                            <b-table :data="data2" :columns="columns2"> </b-table>
                         </b-tab-item>
                     </b-tabs>
                 </div>
@@ -80,12 +74,12 @@ import { mapActions, mapState } from "vuex";
 export default {
     data() {
         return {
-            // position: "(" + this.data.position_x + "," + this.data.position_y + ")",
-            data: [],
+            data1: [],
+            data2: [],
             checkedRows: [],
             checkboxPosition: "left",
             returnedUsers: [],
-            columns: [
+            columns1: [
                 {
                     field: "id",
                     label: "ID",
@@ -103,8 +97,25 @@ export default {
                     centered: true,
                 },
                 {
-                    field: "email",
-                    label: "Email",
+                    field: "phone_number",
+                    label: "Phone number",
+                    centered: true,
+                },
+                {
+                    field: "visit_time",
+                    label: "Visit time",
+                    centered: true,
+                },
+            ],
+            columns2: [
+                {
+                    field: "first_name",
+                    label: "First name",
+                    centered: true,
+                },
+                {
+                    field: "last_name",
+                    label: "Last name",
                     centered: true,
                 },
                 {
@@ -118,13 +129,8 @@ export default {
                     centered: true,
                 },
                 {
-                    field: "position_x",
+                    field: "position",
                     label: "Position",
-                    centered: true,
-                },
-                {
-                    field: "position_y",
-                    label: "Position Y",
                     centered: true,
                 },
             ],
@@ -132,7 +138,14 @@ export default {
     },
 
     mounted() {
-        api.get("user/").then((response) => (this.data = response.data));
+        api.get("user/").then((response) => (this.data1 = response.data));
+        api.get("user/").then((response) => {
+            this.data2 = response.data;
+            for (let i = 0; i < response.data.length; i++) {
+                this.data2[i]["position"] =
+                    this.data2[i].x.toString() + " / " + this.data2[i].y.toString();
+            }
+        });
     },
     methods: {
         ...mapActions("user", ["fetchUsers"]),
@@ -140,7 +153,6 @@ export default {
             this.$router.push("/");
         },
         submit() {
-            // console.log(position);
             userService.calcUsers(this.checkedRows).then((response) => {
                 this.returnedUsers = response.data;
             });
