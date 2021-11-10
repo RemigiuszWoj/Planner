@@ -1,5 +1,5 @@
 import math
-from itertools import combinations, permutations
+from itertools import permutations
 
 # import matplotlib.pyplot as plt
 # import networkx as nx
@@ -9,11 +9,6 @@ START_Y = 0
 
 def get_distance(loc1: dict, loc2: dict) -> float:
     return round(math.sqrt((loc1["x"] - loc2["x"]) ** 2 + (loc1["y"] - loc2["y"]) ** 2), 1)
-
-
-def get_nodes_paths(data: list) -> list:
-    _dict = [{"path": f"{i[0]['id']}-{i[1]['id']}", "dist": get_distance(i[0], i[1])} for i in combinations(data, 2)]
-    return _dict
 
 
 def drop_field(d: dict) -> dict:
@@ -43,6 +38,7 @@ def total_single_time(way: list, nodes: list) -> float:
 def more_docs(doc1: list, nodes: list) -> list:
     doc2 = []
     total_time = []
+
     while True:
         t1 = total_single_time(doc1, nodes)
         t2 = total_single_time(doc2, nodes)
@@ -55,40 +51,14 @@ def more_docs(doc1: list, nodes: list) -> list:
     return total_time
 
 
-def main_logic(data: dict) -> None:
+def main_logic(data: dict) -> tuple:
 
-    # list representing users as nodes with pos_x, pos_y, id
     nodes = [drop_field(p) for p in data["users"]]
-    tab = []
-    for i in permutations([node["id"] for node in nodes]):
-        # tab.append((i, total_single_time(list(i), nodes)))
-        tab.append(more_docs(list(i), nodes))
-    # for i in tab:
-    #     print(i)
-    # print(min(tab, key=lambda x: x[0][1]))
-    # print(len(tab), flush=True)
-    n_tab = []
-    for i in tab:
-        n_tab.append(min(i, key=lambda x: x[1]))
-    print(min(n_tab, key=lambda x: x[1]))
 
-    # print(i, flush=True)
-    #
-    # tutaj bedzie podzial listy na podlisty
-    #
+    tab = [more_docs(list(i), nodes) for i in permutations([node["id"] for node in nodes])]
+    n_tab = [min(i, key=lambda x: x[1]) for i in tab if i]
 
-    # aktualizacja poczatku i konca kazdej z list o pozycje startowa
-    # insert_start(0, nodes)
-
-    #
-    # wyliczenie dlugosci sciezek pomiedzy wierzcholkami
-    #
-
-    #
-    # miliony iteracji
-    #
-
-    return nodes
+    return min(n_tab, key=lambda x: x[1])
 
 
 # # create empty graph

@@ -112,6 +112,10 @@ export default {
     position: relative;
 }
 
+html {
+    background-color: #1d1d1d !important;
+}
+
 .random-database-btn {
     position: fixed;
     bottom: 20%;

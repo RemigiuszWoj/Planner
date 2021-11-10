@@ -12,8 +12,14 @@ class UserViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         if request.data.get("flag", False):
-            main_logic(request.data)
-            return Response(status=201)
+            way, time = main_logic(request.data)
+            doc1, doc2 = way.replace("[", "").replace("]", "").replace(" ", "").split("-")
+            response = {
+                "min_time": time,
+                "doc1": doc1,
+                "doc2": doc2,
+            }
+            return Response(response, status=201)
         else:
             serializer = self.get_serializer(data=request.data)
             serializer.is_valid(raise_exception=True)

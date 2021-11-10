@@ -104,6 +104,7 @@ export default {
         submit() {
             userService.calcUsers(this.checkedRows).then((response) => {
                 this.returnedUsers = response.data;
+                console.log(this.returnedUsers);
             });
         },
     },
