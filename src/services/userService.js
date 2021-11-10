@@ -18,6 +18,6 @@ export default {
             users,
             flag: true,
         };
-        return api.post("user/", data).then((response) => response.data);
+        return api.post("user/", data).then((response) => response);
     },
 };

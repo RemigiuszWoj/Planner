@@ -1,5 +1,5 @@
 import math
-from itertools import combinations
+from itertools import permutations
 
 # import matplotlib.pyplot as plt
 # import networkx as nx
@@ -11,40 +11,54 @@ def get_distance(loc1: dict, loc2: dict) -> float:
     return round(math.sqrt((loc1["x"] - loc2["x"]) ** 2 + (loc1["y"] - loc2["y"]) ** 2), 1)
 
 
-def get_nodes_paths(data: list) -> list:
-    _dict = [{"path": f"{i[0]['id']}-{i[1]['id']}", "dist": get_distance(i[0], i[1])} for i in combinations(data, 2)]
-    return _dict
-
-
 def drop_field(d: dict) -> dict:
     return {k: d[k] for k in d.keys() - ["first_name", "last_name", "email", "phone_number"]}
 
 
-def insert_start(idx: int, _list: list) -> list:
+def insert_start(idx: int, _list: list):
     _list.insert(idx, {"id": 0, "x": START_X, "y": START_Y, "visit_time": 0})
 
 
-def main_logic(data: dict) -> None:
+def total_single_time(way: list, nodes: list) -> float:
+    total_time = 0
 
-    # list representing users as nodes with pos_x, pos_y, id
+    for i in range(len(way)):
+        if i == 0:
+            var = [node for node in nodes if way[0] == node["id"]]
+            total_time += (
+                get_distance({"id": 0, "x": START_X, "y": START_Y, "visit_time": 0}, var[0]) + var[0]["visit_time"]
+            )
+        else:
+            var1 = [node for node in nodes if way[i] == node["id"]]
+            var2 = [node for node in nodes if way[i - 1] == node["id"]]
+            total_time += get_distance(var1[0], var2[0]) + var1[0]["visit_time"]
+    return total_time
+
+
+def more_docs(doc1: list, nodes: list) -> list:
+    doc2 = []
+    total_time = []
+
+    while True:
+        t1 = total_single_time(doc1, nodes)
+        t2 = total_single_time(doc2, nodes)
+        greater = t1 if t1 >= t2 else t2
+        total_time.append((f"{doc1}-{doc2}", greater))
+        try:
+            doc2.append(doc1.pop())
+        except IndexError:
+            break
+    return total_time
+
+
+def main_logic(data: dict) -> tuple:
+
     nodes = [drop_field(p) for p in data["users"]]
 
-    #
-    # tutaj bedzie podzial listy na podlisty
-    #
+    tab = [more_docs(list(i), nodes) for i in permutations([node["id"] for node in nodes])]
+    n_tab = [min(i, key=lambda x: x[1]) for i in tab if i]
 
-    # aktualizacja poczatku i konca kazdej z list o pozycje startowa
-    # insert_start(0, nodes)
-
-    #
-    # wyliczenie dlugosci sciezek pomiedzy wierzcholkami
-    #
-
-    #
-    # miliony iteracji
-    #
-
-    return nodes
+    return min(n_tab, key=lambda x: x[1])
 
 
 # # create empty graph
