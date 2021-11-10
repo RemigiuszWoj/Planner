@@ -1,13 +1,33 @@
 import userService from "../../services/userService";
-const state = { users: [] };
+
+const state = {
+    users: [],
+    output: [],
+};
+
 const getters = {};
+
 const actions = {
     fetchUsers({ commit }) {
         return new Promise((resolve, reject) => {
             userService
                 .fetchUsers()
+                .then((users) => {
+                    commit("setUsers", users);
+                    resolve();
+                })
+                .catch((err) => {
+                    reject(err);
+                });
+        });
+    },
+    calculateRoutes({ commit }, data) {
+        return new Promise((resolve, reject) => {
+            userService
+                .calcUsers(data)
                 .then((output) => {
-                    commit("setUser", output);
+                    console.log("RESPONSE: ", output);
+                    commit("setOutput", output);
                     resolve();
                 })
                 .catch((err) => {
@@ -16,9 +36,20 @@ const actions = {
         });
     },
 };
+
 const mutations = {
-    setUser(state, output) {
-        state.users = output;
+    setUsers(state, users) {
+        state.users = users;
+    },
+    setOutput(state, output) {
+        state.output = output;
     },
 };
-export default { namespaced: true, state, getters, actions, mutations };
+
+export default {
+    namespaced: true,
+    state,
+    getters,
+    actions,
+    mutations,
+};

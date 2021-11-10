@@ -1,89 +1,71 @@
 <template>
     <section>
         <b-field>
-            <div class="flex-row-btns">
+            <div id="flex-row-btns">
                 <b-button
-                    label="Clear checked"
-                    type="is-danger"
-                    class="clear-btn"
-                    @click="checkedRows = []"
-                    rounded
-                    outlined
-                />
-                <b-button
-                    label="Main menu"
+                    label="Back"
                     type="is-success"
                     class="main-menu-btn"
                     rounded
                     @click="redirect_to_mainmenu()"
                 />
-                <b-button
-                    label="Submit"
-                    type="is-primary"
-                    class="submit-btn"
-                    rounded
-                    @click="submit()"
-                />
             </div>
+            <div class="min-time">Optimal time: {{ this.minTime }}</div>
         </b-field>
-        <div class="table">
-            <div class="all_table">
-                <b-tabs>
-                    <b-tab-item label="patient_table">
-                        <b-table
-                            :data="data1"
-                            :columns="columns1"
-                            :checked-rows.sync="checkedRows"
-                            checkable
-                        >
-                            <!-- 
+        <div class="column is-half" style="display: inline-block">
+            <div class="table">
+                <div class="all_table">
+                    <b-tabs>
+                        <b-tab-item label="Doctor 1">
+                            <b-table
+                                :data="data1"
+                                :columns="columns"
+                                :checked-rows.sync="checkedRows"
+                            >
+                                <!-- 
                     <template #bottom-left>
                         <b>Total checked</b>: {{ checkedRows.length }}
                     </template>
                     -->
-                        </b-table>
-                    </b-tab-item>
+                            </b-table>
+                        </b-tab-item>
 
-                    <!-- <b-tab-item label="Checked rows">
+                        <!-- <b-tab-item label="Checked rows">
                     <pre>{{ checkedRows }}</pre>
                 </b-tab-item> -->
-                </b-tabs>
+                    </b-tabs>
+                </div>
             </div>
         </div>
-        <!-- <div class="column is-half" style="display: inline-block">
+        <div class="column is-half" style="display: inline-block">
             <div class="table">
                 <div class="doctor_table">
                     <b-tabs>
-                        <b-tab-item label="Visits table">
-                            <b-table :data="data2" :columns="columns2"> </b-table>
+                        <b-tab-item label="Doctor 2">
+                            <b-table :data="data2" :columns="columns"> </b-table>
                         </b-tab-item>
                     </b-tabs>
                 </div>
             </div>
-        </div> -->
+        </div>
     </section>
 </template>
 
 <script>
 import api from "@/services/api";
 // import userService from "@/services/userService.js";
-import { mapActions, mapState } from "vuex";
+import { mapState } from "vuex";
 
 export default {
     data() {
         return {
+            minTime: "24.1",
             data1: [],
             data2: [],
             checkedRows: [],
             checkboxPosition: "left",
             returnedUsers: [],
-            columns1: [
-                {
-                    field: "id",
-                    label: "ID",
-                    width: "40",
-                    numeric: true,
-                },
+            columns: [
                 {
                     field: "first_name",
                     label: "First name",
@@ -104,12 +86,24 @@ export default {
                     label: "Visit time",
                     centered: true,
                 },
+                {
+                    field: "position",
+                    label: "Position",
+                    centered: true,
+                },
             ],
         };
     },
 
     mounted() {
-        api.get("user/").then((response) => (this.data1 = response.data));
+        this.splitData();
+        api.get("user/").then((response) => {
+            this.data1 = response.data;
+            for (let i = 0; i < response.data.length; i++) {
+                this.data1[i]["position"] =
+                    this.data1[i].x.toString() + " / " + this.data1[i].y.toString();
+            }
+        });
         api.get("user/").then((response) => {
             this.data2 = response.data;
             for (let i = 0; i < response.data.length; i++) {
@@ -119,19 +113,15 @@ export default {
         });
     },
     methods: {
-        ...mapActions("user", ["calculateRoutes"]),
         redirect_to_mainmenu() {
-            this.$router.push("/");
+            this.$router.push("/Plans");
         },
-        submit() {
-            this.calculateRoutes(this.checkedRows);
-            // userService.calcUsers(this.checkedRows).then((response) => {
-            //     this.returnedUsers = response.data;
-            this.$router.push("/Route");
+        splitData() {
+            console.log(this.output);
         },
     },
     computed: {
-        ...mapState("user", ["users"]),
+        ...mapState("user", ["output"]),
     },
 };
 </script>
@@ -140,7 +130,7 @@ export default {
 .flex-row-btns {
     display: flex;
     justify-content: space-between;
-    padding: 3px 0 10px 5px;
+    /* padding: 3px 0 10px 5px; */
 }
 
 .clear-btn {
@@ -172,5 +162,14 @@ export default {
 
 .flex-row-btns {
     margin: 20px 10px 0px 10px;
+}
+
+.min-time {
+    margin-top: 1px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10em;
+    border: 3px solid red;
+    padding: 5px;
 }
 </style>
