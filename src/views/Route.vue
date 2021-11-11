@@ -53,7 +53,6 @@
 
 <script>
 import api from "@/services/api";
-// import userService from "@/services/userService.js";
 import { mapState, mapActions } from "vuex";
 
 export default {
@@ -119,10 +118,10 @@ export default {
         },
         splitData() {
             this.fetchUsers();
-            this.minTime = this.output.min_time;
+            this.optimalTime = this.output.min_time;
             let rangeDoc1 = this.output.doc1;
             let rangeDoc2 = this.output.doc2;
-            console.log(this.minTime, rangeDoc1, rangeDoc2);
+            console.log("doc1: ", rangeDoc1, " doc2: ",rangeDoc2);
             console.log(this.users);
         },
     },

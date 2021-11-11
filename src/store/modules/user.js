@@ -21,14 +21,6 @@ const actions = {
                 });
         });
     },
-    // calculateRoutes({ commit }, data) {
-    //     userService
-    //         .calcUsers(data)
-    //         .then((output) => {
-    //             commit("setOutput", output.data);
-    //         })
-    //         .catch((err) => {console.log(err)})
-    // }
 };
 
 const mutations = {

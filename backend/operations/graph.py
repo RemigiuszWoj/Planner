@@ -46,7 +46,7 @@ def more_docs(doc1: list, nodes: list) -> list:
         t1 = total_single_time(doc1, nodes)
         t2 = total_single_time(doc2, nodes)
         greater = t1 if t1 >= t2 else t2
-        total_time.append((f"{doc1}-{doc2}", greater))
+        total_time.append((f"{doc1}-{doc2}", round(greater, 1)))
         try:
             doc2.append(doc1.pop())
         except IndexError:
@@ -56,7 +56,6 @@ def more_docs(doc1: list, nodes: list) -> list:
 
 def main_logic(data: dict) -> tuple:
     nodes = [drop_field(p) for p in data["users"]]
-    # if len(nodes) <= 8:
     tab = [more_docs(list(i), nodes) for i in permutations([node["id"] for node in nodes])]
     n_tab = [min(i, key=lambda x: x[1]) for i in tab if i]
     return min(n_tab, key=lambda x: x[1])

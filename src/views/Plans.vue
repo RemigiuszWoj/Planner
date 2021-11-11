@@ -25,13 +25,6 @@
                     rounded
                     @click="submit()"
                 />
-                <b-button
-                    label="view results"
-                    type="is-link"
-                    class="submit-btn"
-                    rounded
-                    @click="changePage()"
-                />
             </div>
         </b-field>
         <div class="table">
@@ -44,31 +37,11 @@
                             :checked-rows.sync="checkedRows"
                             checkable
                         >
-                            <!-- 
-                    <template #bottom-left>
-                        <b>Total checked</b>: {{ checkedRows.length }}
-                    </template>
-                    -->
                         </b-table>
                     </b-tab-item>
-
-                    <!-- <b-tab-item label="Checked rows">
-                    <pre>{{ checkedRows }}</pre>
-                </b-tab-item> -->
                 </b-tabs>
             </div>
         </div>
-        <!-- <div class="column is-half" style="display: inline-block">
-            <div class="table">
-                <div class="doctor_table">
-                    <b-tabs>
-                        <b-tab-item label="Visits table">
-                            <b-table :data="data2" :columns="columns2"> </b-table>
-                        </b-tab-item>
-                    </b-tabs>
-                </div>
-            </div>
-        </div> -->
     </section>
 </template>
 
@@ -124,30 +97,26 @@ export default {
     },
     methods: {
         ...mapActions("user", ["calculateRoutes"]),
-        // ...mapMutations("user", ["setOutput"]),
 
         redirect_to_mainmenu() {
             this.$router.push("/");
         },
         async submit() {
             this.loading = true;
-            await this.calculateRoutes(this.checkedRows);
-        },
-        changePage() {
-            this.$router.push("/Route");
+            this.calculateRoutes(this.checkedRows);
         },
         calculateRoutes(data) {
             userService
                 .calcUsers(data)
                 .then((output) => {
-                    // commit("setOutput", output.data);
-                    // this.$store.commit("setOutput", output.data);
                     this.loading = false;
-                    console.log("OUTPUT: ", output.data);
+                    this.$store.commit("user/setOutput", output.data);
                 })
                 .catch((err) => {
-                    console.log("KURWA");
                     console.log(err);
+                })
+                .finally(() => {
+                    this.$router.push("/Route");
                 });
         },
     },
