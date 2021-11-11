@@ -19,6 +19,7 @@ class UserViewSet(viewsets.ModelViewSet):
                 "doc1": doc1,
                 "doc2": doc2,
             }
+            print(response, flush=True)
             return Response(response, status=201)
         else:
             serializer = self.get_serializer(data=request.data)

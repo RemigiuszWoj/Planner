@@ -18,11 +18,18 @@
                     @click="redirect_to_mainmenu()"
                 />
                 <b-button
-                    label="Submit"
+                    label="Calculate"
                     type="is-primary"
                     class="submit-btn"
                     rounded
                     @click="submit()"
+                />
+                <b-button
+                    label="view results"
+                    type="is-link"
+                    class="submit-btn"
+                    rounded
+                    @click="changePage()"
                 />
             </div>
         </b-field>
@@ -31,7 +38,7 @@
                 <b-tabs>
                     <b-tab-item label="patient_table">
                         <b-table
-                            :data="data1"
+                            :data="data"
                             :columns="columns1"
                             :checked-rows.sync="checkedRows"
                             checkable
@@ -66,14 +73,12 @@
 
 <script>
 import api from "@/services/api";
-// import userService from "@/services/userService.js";
-import { mapActions, mapState } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
     data() {
         return {
-            data1: [],
-            data2: [],
+            data: [],
             checkedRows: [],
             checkboxPosition: "left",
             returnedUsers: [],
@@ -109,29 +114,20 @@ export default {
     },
 
     mounted() {
-        api.get("user/").then((response) => (this.data1 = response.data));
-        api.get("user/").then((response) => {
-            this.data2 = response.data;
-            for (let i = 0; i < response.data.length; i++) {
-                this.data2[i]["position"] =
-                    this.data2[i].x.toString() + " / " + this.data2[i].y.toString();
-            }
-        });
+        api.get("user/").then((response) => (this.data = response.data));
     },
     methods: {
         ...mapActions("user", ["calculateRoutes"]),
+
         redirect_to_mainmenu() {
             this.$router.push("/");
         },
         submit() {
             this.calculateRoutes(this.checkedRows);
-            // userService.calcUsers(this.checkedRows).then((response) => {
-            //     this.returnedUsers = response.data;
+        },
+        changePage() {
             this.$router.push("/Route");
         },
-    },
-    computed: {
-        ...mapState("user", ["users"]),
     },
 };
 </script>

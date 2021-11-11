@@ -9,12 +9,12 @@ const getters = {};
 
 const actions = {
     fetchUsers({ commit }) {
-        return new Promise((resolve, reject) => {
+        return new Promise((reject) => {
             userService
                 .fetchUsers()
                 .then((users) => {
                     commit("setUsers", users);
-                    resolve();
+
                 })
                 .catch((err) => {
                     reject(err);
@@ -22,19 +22,13 @@ const actions = {
         });
     },
     calculateRoutes({ commit }, data) {
-        return new Promise((resolve, reject) => {
-            userService
-                .calcUsers(data)
-                .then((output) => {
-                    console.log("RESPONSE: ", output);
-                    commit("setOutput", output);
-                    resolve();
-                })
-                .catch((err) => {
-                    reject(err);
-                });
-        });
-    },
+        userService
+            .calcUsers(data)
+            .then((output) => {
+                commit("setOutput", output.data);
+            })
+            .catch((err) => {console.log(err)})
+    }
 };
 
 const mutations = {

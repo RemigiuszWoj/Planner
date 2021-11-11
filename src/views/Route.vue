@@ -10,7 +10,7 @@
                     @click="redirect_to_mainmenu()"
                 />
             </div>
-            <div class="min-time">Optimal time: {{ this.minTime }}</div>
+            <div class="min-time">Optimal time: {{ this.optimalTime }}</div>
         </b-field>
         <div class="column is-half" style="display: inline-block">
             <div class="table">
@@ -54,12 +54,12 @@
 <script>
 import api from "@/services/api";
 // import userService from "@/services/userService.js";
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
     data() {
         return {
-            minTime: "24.1",
+            optimalTime: 0,
             data1: [],
             data2: [],
             checkedRows: [],
@@ -95,7 +95,7 @@ export default {
         };
     },
 
-    mounted() {
+    created() {
         this.splitData();
         api.get("user/").then((response) => {
             this.data1 = response.data;
@@ -113,15 +113,21 @@ export default {
         });
     },
     methods: {
+        ...mapActions("user", ["fetchUsers"]),
         redirect_to_mainmenu() {
             this.$router.push("/Plans");
         },
         splitData() {
-            console.log(this.output);
+            this.fetchUsers();
+            this.minTime = this.output.min_time;
+            let rangeDoc1 = this.output.doc1;
+            let rangeDoc2 = this.output.doc2;
+            console.log(this.minTime, rangeDoc1, rangeDoc2);
+            console.log(this.users);
         },
     },
     computed: {
-        ...mapState("user", ["output"]),
+        ...mapState("user", ["users", "output"]),
     },
 };
 </script>
