@@ -84,7 +84,6 @@ def main_logic(data: dict) -> tuple:
 #     print(total_time)
 #     n_tab = [min(i, key=lambda x: x[1]) for i in total_time if i]
 #     return min(n_tab, key=lambda x: x[1])
-# return ("[1]-[2,3]", 20)
 
 
 # # create empty graph

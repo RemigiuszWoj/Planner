@@ -14,7 +14,6 @@ const actions = {
                 .fetchUsers()
                 .then((users) => {
                     commit("setUsers", users);
-
                 })
                 .catch((err) => {
                     reject(err);

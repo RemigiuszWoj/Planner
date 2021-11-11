@@ -22,17 +22,8 @@
                                 :columns="columns"
                                 :checked-rows.sync="checkedRows"
                             >
-                                <!-- 
-                    <template #bottom-left>
-                        <b>Total checked</b>: {{ checkedRows.length }}
-                    </template>
-                    -->
                             </b-table>
                         </b-tab-item>
-
-                        <!-- <b-tab-item label="Checked rows">
-                    <pre>{{ checkedRows }}</pre>
-                </b-tab-item> -->
                     </b-tabs>
                 </div>
             </div>
@@ -52,7 +43,6 @@
 </template>
 
 <script>
-import api from "@/services/api";
 import { mapState, mapActions } from "vuex";
 
 export default {
@@ -95,34 +85,23 @@ export default {
     },
 
     created() {
-        this.splitData();
-        api.get("user/").then((response) => {
-            this.data1 = response.data;
-            for (let i = 0; i < response.data.length; i++) {
-                this.data1[i]["position"] =
-                    this.data1[i].x.toString() + " / " + this.data1[i].y.toString();
-            }
-        });
-        api.get("user/").then((response) => {
-            this.data2 = response.data;
-            for (let i = 0; i < response.data.length; i++) {
-                this.data2[i]["position"] =
-                    this.data2[i].x.toString() + " / " + this.data2[i].y.toString();
-            }
-        });
+        this.fetchUsers();
+        this.optimalTime = this.output.min_time;
+        this.data1 = this.output.doc1;
+        this.data2 = this.output.doc2;
+        for (let i = 0; i < this.data1.length; i++) {
+            this.data1[i]["position"] =
+                this.data1[i].x.toString() + " / " + this.data1[i].y.toString();
+        }
+        for (let i = 0; i < this.data2.length; i++) {
+            this.data2[i]["position"] =
+                this.data2[i].x.toString() + " / " + this.data2[i].y.toString();
+        }
     },
     methods: {
         ...mapActions("user", ["fetchUsers"]),
         redirect_to_mainmenu() {
             this.$router.push("/Plans");
-        },
-        splitData() {
-            this.fetchUsers();
-            this.optimalTime = this.output.min_time;
-            let rangeDoc1 = this.output.doc1;
-            let rangeDoc2 = this.output.doc2;
-            console.log("doc1: ", rangeDoc1, " doc2: ",rangeDoc2);
-            console.log(this.users);
         },
     },
     computed: {
@@ -135,7 +114,6 @@ export default {
 .flex-row-btns {
     display: flex;
     justify-content: space-between;
-    /* padding: 3px 0 10px 5px; */
 }
 
 .clear-btn {
