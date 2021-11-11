@@ -1,5 +1,6 @@
 <template>
     <section>
+        <b-loading is-full-page v-model="loading" :can-cancel="true"></b-loading>
         <b-field>
             <div class="flex-row-btns">
                 <b-button
@@ -73,7 +74,8 @@
 
 <script>
 import api from "@/services/api";
-import { mapActions } from "vuex";
+import userService from "@/services/userService";
+import { mapActions, mapState } from "vuex";
 
 export default {
     data() {
@@ -82,6 +84,7 @@ export default {
             checkedRows: [],
             checkboxPosition: "left",
             returnedUsers: [],
+            loading: false,
             columns1: [
                 {
                     field: "id",
@@ -116,17 +119,36 @@ export default {
     mounted() {
         api.get("user/").then((response) => (this.data = response.data));
     },
+    computed: {
+        ...mapState("user", ["users", "output"]),
+    },
     methods: {
         ...mapActions("user", ["calculateRoutes"]),
+        // ...mapMutations("user", ["setOutput"]),
 
         redirect_to_mainmenu() {
             this.$router.push("/");
         },
-        submit() {
-            this.calculateRoutes(this.checkedRows);
+        async submit() {
+            this.loading = true;
+            await this.calculateRoutes(this.checkedRows);
         },
         changePage() {
             this.$router.push("/Route");
+        },
+        calculateRoutes(data) {
+            userService
+                .calcUsers(data)
+                .then((output) => {
+                    // commit("setOutput", output.data);
+                    // this.$store.commit("setOutput", output.data);
+                    this.loading = false;
+                    console.log("OUTPUT: ", output.data);
+                })
+                .catch((err) => {
+                    console.log("KURWA");
+                    console.log(err);
+                });
         },
     },
 };

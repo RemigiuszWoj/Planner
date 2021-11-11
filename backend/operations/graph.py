@@ -56,10 +56,10 @@ def more_docs(doc1: list, nodes: list) -> list:
 
 def main_logic(data: dict) -> tuple:
     nodes = [drop_field(p) for p in data["users"]]
-    if len(nodes) <= 8:
-        tab = [more_docs(list(i), nodes) for i in permutations([node["id"] for node in nodes])]
-        n_tab = [min(i, key=lambda x: x[1]) for i in tab if i]
-        return min(n_tab, key=lambda x: x[1])
+    # if len(nodes) <= 8:
+    tab = [more_docs(list(i), nodes) for i in permutations([node["id"] for node in nodes])]
+    n_tab = [min(i, key=lambda x: x[1]) for i in tab if i]
+    return min(n_tab, key=lambda x: x[1])
 
 
 # def main_logic(data):

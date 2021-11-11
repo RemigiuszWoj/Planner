@@ -85,7 +85,7 @@ export default {
     margin-top: 10%;
     color: rgba(89, 149, 151, 0.815);
 }
-.create_plan_button_title{
+.create_plan_button_title {
     font-size: 50px;
     margin-top: 10%;
     color: rgba(89, 149, 151, 0.815);
