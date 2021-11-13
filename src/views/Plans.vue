@@ -112,9 +112,6 @@ export default {
                     this.loading = false;
                     this.$store.commit("user/setOutput", output.data);
                 })
-                .catch((err) => {
-                    console.log(err);
-                })
                 .finally(() => {
                     this.$router.push("/Route");
                 });
