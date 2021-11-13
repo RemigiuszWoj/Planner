@@ -1,7 +1,6 @@
 import math
+from itertools import combinations, permutations
 import random
-from copy import deepcopy
-from itertools import permutations
 
 # import matplotlib.pyplot as plt
 # import networkx as nx
@@ -35,7 +34,7 @@ def total_single_time(way: list, nodes: list) -> float:
             var1 = [node for node in nodes if way[i] == node["id"]]
             var2 = [node for node in nodes if way[i - 1] == node["id"]]
             total_time += get_distance(var1[0], var2[0]) + var1[0]["visit_time"]
-    return total_time
+    return round(total_time,2)
 
 
 def more_docs(doc1: list, nodes: list) -> list:
@@ -46,7 +45,7 @@ def more_docs(doc1: list, nodes: list) -> list:
         t1 = total_single_time(doc1, nodes)
         t2 = total_single_time(doc2, nodes)
         greater = t1 if t1 >= t2 else t2
-        total_time.append((f"{doc1}-{doc2}", round(greater, 1)))
+        total_time.append((f"{doc1}-{doc2}", round(greater,2)))
         try:
             doc2.append(doc1.pop())
         except IndexError:
@@ -56,34 +55,65 @@ def more_docs(doc1: list, nodes: list) -> list:
 
 def main_logic(data: dict) -> tuple:
     nodes = [drop_field(p) for p in data["users"]]
-    tab = [more_docs(list(i), nodes) for i in permutations([node["id"] for node in nodes])]
-    n_tab = [min(i, key=lambda x: x[1]) for i in tab if i]
-    return min(n_tab, key=lambda x: x[1])
+
+    if len(nodes)<=8:
+        tab = []
+        for i in permutations([node["id"] for node in nodes]):
+            # tab.append((i, total_single_time(list(i), nodes)))
+            tab.append(more_docs(list(i), nodes))
+        # for i in tab:
+        #     print(i)
+        # print(min(tab, key=lambda x: x[0][1]))
+        # print(len(tab), flush=True)
+        n_tab = []
+        for i in tab:
+            n_tab.append(min(i, key=lambda x: x[1]))
+        print(min(n_tab, key=lambda x: x[1]))
+
+        return nodes
+    else:
+        nodes = [drop_field(p) for p in data["users"]]
+        total_time = []
+
+        for i in range(5000):
+            doc1 = []
+            doc2 = []
+            nodes_copy = [node["id"] for node in nodes]
+
+            while nodes_copy:
+                if random.randint(1, 1000) % 2 == 0:
+                    doc1.append(nodes_copy.pop(random.randint(0,len(nodes_copy)-1)))
+                else:
+                    doc2.append(nodes_copy.pop(random.randint(0,len(nodes_copy)-1)))
+
+            t1 = total_single_time(doc1, nodes)
+            t2 = total_single_time(doc2, nodes)
+            greater = t1 if t1 >= t2 else t2
+            total_time.append((f"{doc1}-{doc2}", greater))
+        
+        n_tab = []
+        #for i in total_time:
+            #n_tab.append(min(i, key=lambda x: x[1]))
+        print(min(total_time, key=lambda x: x[1]))
+        
+            
+    # print(i, flush=True)
+    #
+    # tutaj bedzie podzial listy na podlisty
+    #
+
+    # aktualizacja poczatku i konca kazdej z list o pozycje startowa
+    # insert_start(0, nodes)
+
+    #
+    # wyliczenie dlugosci sciezek pomiedzy wierzcholkami
+    #
+
+    #
+    # miliony iteracji
+    #
 
 
-# def main_logic(data):
-#     print("*" * 20)
-#     nodes = [drop_field(p) for p in data["users"]]
-#     total_time = []
-
-#     for i in range(100):
-#         doc1 = []
-#         doc2 = []
-#         nodes_copy = [node["id"] for node in nodes]
-
-#         while len(nodes_copy) != 0:
-#             if random.randint(1, 100) % 2 == 0:
-#                 doc1.append(nodes_copy.pop())
-#             else:
-#                 doc2.append(nodes_copy.pop())
-
-#         t1 = total_single_time(doc1, nodes)
-#         t2 = total_single_time(doc2, nodes)
-#         greater = t1 if t1 >= t2 else t2
-#         total_time.append((f"{doc1}-{doc2}", greater))
-#     print(total_time)
-#     n_tab = [min(i, key=lambda x: x[1]) for i in total_time if i]
-#     return min(n_tab, key=lambda x: x[1])
 
 
 # # create empty graph
