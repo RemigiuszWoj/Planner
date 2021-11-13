@@ -10,7 +10,10 @@
                     @click="redirect_to_mainmenu()"
                 />
             </div>
-            <div class="min-time">Optimal time: {{ this.optimalTime }}</div>
+            <div class="min-time">
+                <span class="text">Best calculated time: </span
+                ><span class="wynik">{{ this.optimalTime }}</span>
+            </div>
         </b-field>
         <div class="column is-half" style="display: inline-block">
             <div class="table">
@@ -143,16 +146,29 @@ export default {
     font-size: 17px;
 }
 
-.flex-row-btns {
-    margin: 20px 10px 0px 10px;
+.field-body .field #flex-row-btns {
+    padding-left: 18px !important;
+    padding-top: 20px !important;
 }
 
 .min-time {
-    margin-top: 1px;
+    margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
-    width: 10em;
-    border: 3px solid red;
+    width: 200px;
     padding: 5px;
+    text-align: center;
+    vertical-align: middle;
+    transform: translateX(-45px);
+}
+
+.text {
+    vertical-align: middle;
+    font-size: 20px;
+}
+
+.wynik {
+    font-size: 30px;
+    color: #7fff00;
 }
 </style>
