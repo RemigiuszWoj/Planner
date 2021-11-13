@@ -6,5 +6,6 @@ class User(models.Model):
     last_name = models.CharField(max_length=20, null=True, blank=True)
     email = models.CharField(max_length=50, null=True, blank=True)
     phone_number = models.CharField(max_length=9)
-    position_x = models.IntegerField(default=0)
-    position_y = models.IntegerField(default=0)
+    x = models.IntegerField(default=0)
+    y = models.IntegerField(default=0)
+    visit_time = models.IntegerField(default=0)

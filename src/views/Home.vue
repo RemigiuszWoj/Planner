@@ -1,7 +1,9 @@
 <template>
     <div class="main-content">
+        <div class="title">Just make your route</div>
         <div class="buttons">
             <div class="btn-container-1">
+                <div class="new_user_button_title">Click to add new user.</div>
                 <b-button type="is-success" @click="newUser = true" class="newuser-btn"
                     >Add user</b-button
                 >
@@ -18,6 +20,7 @@
             </b-modal> -->
             </div>
             <div class="btn-container-2">
+                <div class="create_plan_button_title">Click to create visit plan.</div>
                 <b-button type="is-info" @click="createPlan" class="create-btn"
                     >Create plan</b-button
                 >
@@ -71,6 +74,22 @@ export default {
 </script>
 
 <style scoped>
+.title {
+    position: relative;
+    font-size: 75px;
+    margin-top: 10%;
+    color: rgba(89, 149, 151, 0.815);
+}
+.new_user_button_title {
+    font-size: 50px;
+    margin-top: 10%;
+    color: rgba(89, 149, 151, 0.815);
+}
+.create_plan_button_title {
+    font-size: 50px;
+    margin-top: 10%;
+    color: rgba(89, 149, 151, 0.815);
+}
 .create-btn {
     box-shadow: 0 0 30px 1px rgb(1 1 1 / 30%);
     transition: all 0.6s ease-in-out;
@@ -110,6 +129,10 @@ export default {
 
 .main-content {
     position: relative;
+}
+
+html {
+    background-color: #1d1d1d !important;
 }
 
 .random-database-btn {
