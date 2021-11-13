@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 
 export default axios.create({
     baseURL: "/api",
-    // timeout: none,
+    timeou: 0,
     headers: {
         "Content-Type": "application/json",
         "X-CSRFToken": Cookies.get("csrftoken"),

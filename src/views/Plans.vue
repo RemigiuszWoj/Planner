@@ -1,61 +1,55 @@
 <template>
     <section>
-        <div class="column is-full">
-            <b-field>
-                <div class="flex-row-btns">
-                    <b-button
-                        label="Clear checked"
-                        type="is-danger"
-                        class="clear-btn"
-                        @click="checkedRows = []"
-                        rounded
-                        outlined
-                    />
-                    <b-button
-                        label="Main menu"
-                        type="is-success"
-                        class="main-menu-btn"
-                        rounded
-                        @click="redirect_to_mainmenu()"
-                    />
-                    <b-button
-                        label="Submit"
-                        type="is-primary"
-                        class="submit-btn"
-                        rounded
-                        @click="submit()"
-                    />
-                </div>
-            </b-field>
-
-            <b-tabs>
-                <b-tab-item label="Table">
-                    <b-table
-                        :data="data"
-                        :columns="columns"
-                        :checked-rows.sync="checkedRows"
-                        checkable
-                    >
-                        <!-- 
-                    <template #bottom-left>
-                        <b>Total checked</b>: {{ checkedRows.length }}
-                    </template>
-                    -->
-                    </b-table>
-                </b-tab-item>
-
-                <!-- <b-tab-item label="Checked rows">
-                    <pre>{{ checkedRows }}</pre>
-                </b-tab-item> -->
-            </b-tabs>
+        <b-loading is-full-page v-model="loading" :can-cancel="true"></b-loading>
+        <b-field>
+            <div class="flex-row-btns">
+                <b-button
+                    label="Clear checked"
+                    type="is-danger"
+                    class="clear-btn"
+                    @click="checkedRows = []"
+                    rounded
+                    outlined
+                />
+                <b-button
+                    label="Main menu"
+                    type="is-success"
+                    class="main-menu-btn"
+                    rounded
+                    @click="redirect_to_mainmenu()"
+                />
+                <b-button
+                    label="Calculate"
+                    type="is-primary"
+                    class="submit-btn"
+                    rounded
+                    @click="submit()"
+                />
+            </div>
+        </b-field>
+        <div class="table">
+            <div class="all_table">
+                <b-tabs>
+                    <b-tab-item label="patient_table">
+                        <b-table
+                            :data="data"
+                            :columns="columns1"
+                            :checked-rows.sync="checkedRows"
+                            checkable
+                        >
+                        </b-table>
+                    </b-tab-item>
+                </b-tabs>
+            </div>
         </div>
     </section>
 </template>
 
 <script>
 import api from "@/services/api";
-import userService from "@/services/userService.js";
+import userService from "@/services/userService";
 import { mapActions, mapState } from "vuex";
+
 export default {
     data() {
         return {
@@ -63,7 +57,8 @@ export default {
             checkedRows: [],
             checkboxPosition: "left",
             returnedUsers: [],
-            columns: [
+            loading: false,
+            columns1: [
                 {
                     field: "id",
                     label: "ID",
@@ -81,34 +76,49 @@ export default {
                     centered: true,
                 },
                 {
-                    field: "email",
-                    label: "Email",
+                    field: "phone_number",
+                    label: "Phone number",
                     centered: true,
                 },
                 {
-                    field: "phone_number",
-                    label: "Phone number",
+                    field: "visit_time",
+                    label: "Visit time",
                     centered: true,
                 },
             ],
         };
     },
+
     mounted() {
         api.get("user/").then((response) => (this.data = response.data));
     },
+    computed: {
+        ...mapState("user", ["users", "output"]),
+    },
     methods: {
-        ...mapActions("user", ["fetchUsers"]),
+        ...mapActions("user", ["calculateRoutes"]),
+
         redirect_to_mainmenu() {
             this.$router.push("/");
         },
-        submit() {
-            userService.calcUsers(this.checkedRows).then((response) => {
-                this.returnedUsers = response.data;
-            });
+        async submit() {
+            this.loading = true;
+            this.calculateRoutes(this.checkedRows);
         },
-    },
-    computed: {
-        ...mapState("user", ["users"]),
+        calculateRoutes(data) {
+            userService
+                .calcUsers(data)
+                .then((output) => {
+                    this.loading = false;
+                    this.$store.commit("user/setOutput", output.data);
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+                .finally(() => {
+                    this.$router.push("/Route");
+                });
+        },
     },
 };
 </script>
@@ -145,5 +155,9 @@ export default {
 
 .main-menu-btn:hover {
     font-size: 17px;
+}
+
+.flex-row-btns {
+    margin: 20px 10px 0px 10px;
 }
 </style>
