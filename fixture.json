@@ -1,132 +1,282 @@
 [
     {
         "fields": {
-            "email": "pawel.kaczmarek.wp.pl",
-            "first_name": "Pawel",
-            "last_name": "Kaczmarek",
-            "phone_number": "861479613",
-            "visit_time": 25,
-            "x": -19,
-            "y": -17
+            "adress": "Wroclawska 17/1",
+            "email": "jedrzej.kowalczyk.gmail.com",
+            "first_name": "Jedrzej",
+            "last_name": "Kowalczyk",
+            "phone_number": "494043827",
+            "visit_time": 15,
+            "x": 4,
+            "y": -3
         },
         "model": "user.User",
         "pk": 1
     },
     {
         "fields": {
-            "email": "anna.kwiatek.onet.pl",
-            "first_name": "Anna",
-            "last_name": "Kwiatek",
-            "phone_number": "354893312",
-            "visit_time": 20,
-            "x": 15,
-            "y": -18
+            "adress": "Dworcowa 12/10",
+            "email": "aleksander.piotrowicz.gmail.com",
+            "first_name": "Aleksander",
+            "last_name": "Piotrowicz",
+            "phone_number": "457337381",
+            "visit_time": 50,
+            "x": -16,
+            "y": 19
         },
         "model": "user.User",
         "pk": 2
     },
     {
         "fields": {
-            "email": "hubert.wojcieszak.wp.pl",
-            "first_name": "Hubert",
-            "last_name": "Wojcieszak",
-            "phone_number": "758161171",
-            "visit_time": 30,
-            "x": -6,
-            "y": 10
+            "adress": "Balonowa 18/10",
+            "email": "joanna.kamien.gmail.com",
+            "first_name": "Joanna",
+            "last_name": "Kamien",
+            "phone_number": "447953953",
+            "visit_time": 50,
+            "x": -5,
+            "y": -8
         },
         "model": "user.User",
         "pk": 3
     },
     {
         "fields": {
-            "email": "wieslaw.kwiatek.gmail.com",
-            "first_name": "Wieslaw",
-            "last_name": "Kwiatek",
-            "phone_number": "388048338",
-            "visit_time": 45,
-            "x": 16,
-            "y": -16
+            "adress": "Teczowa 5/10",
+            "email": "bartosz.krawiec.onet.pl",
+            "first_name": "Bartosz",
+            "last_name": "Krawiec",
+            "phone_number": "661383268",
+            "visit_time": 40,
+            "x": 12,
+            "y": -19
         },
         "model": "user.User",
         "pk": 4
     },
     {
         "fields": {
-            "email": "joanna.kaczmarek.gmail.com",
-            "first_name": "Joanna",
-            "last_name": "Kaczmarek",
-            "phone_number": "977514187",
-            "visit_time": 40,
-            "x": -4,
-            "y": -4
+            "adress": "Boleslawiecka 11/1",
+            "email": "maciej.krawiec.onet.pl",
+            "first_name": "Maciej",
+            "last_name": "Krawiec",
+            "phone_number": "089870180",
+            "visit_time": 25,
+            "x": 12,
+            "y": 11
         },
         "model": "user.User",
         "pk": 5
     },
     {
         "fields": {
-            "email": "anna.michalczyk.onet.pl",
-            "first_name": "Anna",
-            "last_name": "Michalczyk",
-            "phone_number": "324369450",
-            "visit_time": 25,
-            "x": -13,
-            "y": 1
+            "adress": "Krakowska 20/16",
+            "email": "pawel.wojcieszak.gmail.com",
+            "first_name": "Pawel",
+            "last_name": "Wojcieszak",
+            "phone_number": "350003213",
+            "visit_time": 15,
+            "x": -8,
+            "y": -20
         },
         "model": "user.User",
         "pk": 6
     },
     {
         "fields": {
-            "email": "magdalena.palec.wp.pl",
-            "first_name": "Magdalena",
-            "last_name": "Palec",
-            "phone_number": "840769658",
-            "visit_time": 50,
-            "x": 9,
-            "y": -7
+            "adress": "Krakowska 20/12",
+            "email": "kamil.wierzba.wp.pl",
+            "first_name": "Kamil",
+            "last_name": "Wierzba",
+            "phone_number": "902793998",
+            "visit_time": 20,
+            "x": -10,
+            "y": 10
         },
         "model": "user.User",
         "pk": 7
     },
     {
         "fields": {
-            "email": "piotr.kwiatek.onet.pl",
-            "first_name": "Piotr",
-            "last_name": "Kwiatek",
-            "phone_number": "701762589",
-            "visit_time": 55,
+            "adress": "Krolewiecka 19/12",
+            "email": "przemyslaw.nowak.wp.pl",
+            "first_name": "Przemyslaw",
+            "last_name": "Nowak",
+            "phone_number": "862618852",
+            "visit_time": 40,
             "x": 6,
-            "y": -20
+            "y": -3
         },
         "model": "user.User",
         "pk": 8
     },
     {
         "fields": {
-            "email": "aleksandra.nowiczok.wp.pl",
-            "first_name": "Aleksandra",
-            "last_name": "Nowiczok",
-            "phone_number": "566490518",
-            "visit_time": 40,
-            "x": -11,
-            "y": 15
+            "adress": "Lotnicza 19/13",
+            "email": "magdalena.piotrowicz.onet.pl",
+            "first_name": "Magdalena",
+            "last_name": "Piotrowicz",
+            "phone_number": "893116764",
+            "visit_time": 20,
+            "x": -5,
+            "y": 20
         },
         "model": "user.User",
         "pk": 9
     },
     {
         "fields": {
-            "email": "bogdan.wojcieszak.wp.pl",
-            "first_name": "Bogdan",
-            "last_name": "Wojcieszak",
-            "phone_number": "941664457",
-            "visit_time": 45,
-            "x": -5,
-            "y": 17
+            "adress": "Szczesliwa 8/13",
+            "email": "aleksandra.nowiczok.wp.pl",
+            "first_name": "Aleksandra",
+            "last_name": "Nowiczok",
+            "phone_number": "286161012",
+            "visit_time": 20,
+            "x": -19,
+            "y": -16
         },
         "model": "user.User",
         "pk": 10
+    },
+    {
+        "fields": {
+            "adress": "Szczesliwa 5/10",
+            "email": "janusz.wieczorek.gmail.com",
+            "first_name": "Janusz",
+            "last_name": "Wieczorek",
+            "phone_number": "414611751",
+            "visit_time": 15,
+            "x": 0,
+            "y": 15
+        },
+        "model": "user.User",
+        "pk": 11
+    },
+    {
+        "fields": {
+            "adress": "Teczowa 14/8",
+            "email": "piotr.kaczmarek.onet.pl",
+            "first_name": "Piotr",
+            "last_name": "Kaczmarek",
+            "phone_number": "425293066",
+            "visit_time": 30,
+            "x": -20,
+            "y": -3
+        },
+        "model": "user.User",
+        "pk": 12
+    },
+    {
+        "fields": {
+            "adress": "Robotnicza 2/17",
+            "email": "aleksander.wrobel.gmail.com",
+            "first_name": "Aleksander",
+            "last_name": "Wrobel",
+            "phone_number": "013560786",
+            "visit_time": 20,
+            "x": 2,
+            "y": 7
+        },
+        "model": "user.User",
+        "pk": 13
+    },
+    {
+        "fields": {
+            "adress": "Dworcowa 20/14",
+            "email": "wiktor.kaczmarek.onet.pl",
+            "first_name": "Wiktor",
+            "last_name": "Kaczmarek",
+            "phone_number": "207133535",
+            "visit_time": 35,
+            "x": -2,
+            "y": 18
+        },
+        "model": "user.User",
+        "pk": 14
+    },
+    {
+        "fields": {
+            "adress": "Strzegomska 15/1",
+            "email": "bartosz.kwiatek.wp.pl",
+            "first_name": "Bartosz",
+            "last_name": "Kwiatek",
+            "phone_number": "627522025",
+            "visit_time": 10,
+            "x": 10,
+            "y": 0
+        },
+        "model": "user.User",
+        "pk": 15
+    },
+    {
+        "fields": {
+            "adress": "Boleslawiecka 1/3",
+            "email": "janusz.wrobel.onet.pl",
+            "first_name": "Janusz",
+            "last_name": "Wrobel",
+            "phone_number": "418120014",
+            "visit_time": 20,
+            "x": -15,
+            "y": -7
+        },
+        "model": "user.User",
+        "pk": 16
+    },
+    {
+        "fields": {
+            "adress": "Karkonowska 3/7",
+            "email": "celina.socha.gmail.com",
+            "first_name": "Celina",
+            "last_name": "Socha",
+            "phone_number": "336213209",
+            "visit_time": 40,
+            "x": 12,
+            "y": -17
+        },
+        "model": "user.User",
+        "pk": 17
+    },
+    {
+        "fields": {
+            "adress": "Wyspianskiego 2/5",
+            "email": "boguslaw.nowiczok.wp.pl",
+            "first_name": "Boguslaw",
+            "last_name": "Nowiczok",
+            "phone_number": "763476390",
+            "visit_time": 30,
+            "x": 8,
+            "y": -10
+        },
+        "model": "user.User",
+        "pk": 18
+    },
+    {
+        "fields": {
+            "adress": "Boleslawiecka 3/12",
+            "email": "anna.wieczorek.gmail.com",
+            "first_name": "Anna",
+            "last_name": "Wieczorek",
+            "phone_number": "012165307",
+            "visit_time": 50,
+            "x": -19,
+            "y": 6
+        },
+        "model": "user.User",
+        "pk": 19
+    },
+    {
+        "fields": {
+            "adress": "Legnicka 19/15",
+            "email": "janusz.dab.onet.pl",
+            "first_name": "Janusz",
+            "last_name": "Dab",
+            "phone_number": "221475574",
+            "visit_time": 45,
+            "x": 17,
+            "y": -6
+        },
+        "model": "user.User",
+        "pk": 20
     }
 ]

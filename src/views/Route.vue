@@ -79,8 +79,18 @@ export default {
                     centered: true,
                 },
                 {
-                    field: "position",
-                    label: "Position",
+                    field: "adress",
+                    label: "Adress",
+                    centered: true,
+                },
+                {
+                    field: "visit_start",
+                    label: "Visit start",
+                    centered: true,
+                },
+                {
+                    field: "visit_stop",
+                    label: "Visit_stop",
                     centered: true,
                 },
             ],
@@ -92,14 +102,14 @@ export default {
         this.optimalTime = this.output.min_time;
         this.data1 = this.output.doc1;
         this.data2 = this.output.doc2;
-        for (let i = 0; i < this.data1.length; i++) {
-            this.data1[i]["position"] =
-                this.data1[i].x.toString() + " / " + this.data1[i].y.toString();
-        }
-        for (let i = 0; i < this.data2.length; i++) {
-            this.data2[i]["position"] =
-                this.data2[i].x.toString() + " / " + this.data2[i].y.toString();
-        }
+        // for (let i = 0; i < this.data1.length; i++) {
+        //     this.data1[i]["position"] =
+        //         this.data1[i].x.toString() + " / " + this.data1[i].y.toString();
+        // }
+        // for (let i = 0; i < this.data2.length; i++) {
+        //     this.data2[i]["position"] =
+        //         this.data2[i].x.toString() + " / " + this.data2[i].y.toString();
+        // }
     },
     methods: {
         ...mapActions("user", ["fetchUsers"]),

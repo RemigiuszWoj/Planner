@@ -9,3 +9,4 @@ class User(models.Model):
     x = models.IntegerField(default=0)
     y = models.IntegerField(default=0)
     visit_time = models.IntegerField(default=0)
+    adress = models.CharField(max_length=50, null=True, blank=True)
