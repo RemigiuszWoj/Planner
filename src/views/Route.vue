@@ -90,7 +90,7 @@ export default {
                 },
                 {
                     field: "visit_stop",
-                    label: "Visit_stop",
+                    label: "Visit stop",
                     centered: true,
                 },
             ],
@@ -102,14 +102,20 @@ export default {
         this.optimalTime = this.output.min_time;
         this.data1 = this.output.doc1;
         this.data2 = this.output.doc2;
-        // for (let i = 0; i < this.data1.length; i++) {
-        //     this.data1[i]["position"] =
-        //         this.data1[i].x.toString() + " / " + this.data1[i].y.toString();
-        // }
-        // for (let i = 0; i < this.data2.length; i++) {
-        //     this.data2[i]["position"] =
-        //         this.data2[i].x.toString() + " / " + this.data2[i].y.toString();
-        // }
+        this.start_doc1 = this.output.start_doc1;
+        this.start_doc2 = this.output.start_doc2;
+        this.stop_doc1 = this.output.stop_doc1;
+        this.stop_doc2 = this.output.stop_doc2;
+        console.log(this.start_doc1);
+
+        for (let i = 0; i < this.data1.length; i++) {
+            this.data1[i]["visit_start"] = this.start_doc1[i];
+            this.data1[i]["visit_stop"] = this.stop_doc1[i];
+        }
+        for (let i = 0; i < this.data2.length; i++) {
+            this.data2[i]["visit_start"] = this.start_doc2[i];
+            this.data2[i]["visit_stop"] = this.stop_doc2[i];
+        }
     },
     methods: {
         ...mapActions("user", ["fetchUsers"]),
