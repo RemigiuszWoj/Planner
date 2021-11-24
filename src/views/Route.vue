@@ -106,7 +106,6 @@ export default {
         this.start_doc2 = this.output.start_doc2;
         this.stop_doc1 = this.output.stop_doc1;
         this.stop_doc2 = this.output.stop_doc2;
-        console.log(this.start_doc1);
 
         for (let i = 0; i < this.data1.length; i++) {
             this.data1[i]["visit_start"] = this.start_doc1[i];
